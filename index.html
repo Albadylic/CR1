@@ -10,17 +10,21 @@
   <body>
     <h1>Code Read 1</h1>
 
-    <section id="num-container">
-      <p class="unclicked">2</p>
-      <p class="unclicked">4</p>
-      <p class="unclicked">6</p>
-      <p class="unclicked">8</p>
-      <p class="unclicked">12</p>
-      <p class="unclicked">16</p>
-    </section>
-    <button id="calculate-button">Calculate</button>
-    <output>Result will generate here</output>
-    <button id="reset-button">Reset</button>
+    <form>
+      <p>Choose some numbers:</p>
+      <fieldset>
+        <input type="checkbox" id="input-one" value="2" />
+        <label for="input-one">2</label>
+        <input type="checkbox" id="input-two" value="4" />
+        <label for="input-two">4</label>
+        <input type="checkbox" id="input-three" value="6" />
+        <label for="input-three">6</label>
+        <input type="checkbox" id="input-four" value="8" />
+        <label for="input-four">8</label>
+      </fieldset>
+      <button>Submit</button>
+      <output></output>
+    </form>
   </body>
   <script src="script.js"></script>
 </html>

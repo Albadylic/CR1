@@ -1,40 +1,27 @@
-const numberElements = document.querySelectorAll("p");
-const calculateButton = document.getElementById("calculate-button");
-const outputField = document.querySelector("output");
-const resetButton = document.getElementById("reset-button");
+const inputs = document.querySelectorAll("input");
+const submitButton = document.querySelector("button");
+const output = document.querySelector("output");
 
-numberElements.forEach((element) => {
-  element.addEventListener("click", () => {
-    addToArray(element);
-    element.classList.remove("unclicked");
-    element.classList.add("clicked");
-  });
+submitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  let checkedInputs = [];
+
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].checked === true) {
+      checkedInputs.push(inputs[i]);
+    }
+  }
+
+  if (checkedInputs.length === 0) {
+    output.textContent = "Please check at least one box";
+  } else {
+    output.textContent = calculate(checkedInputs);
+  }
 });
 
-let chosenNumbers = [];
-
-const addToArray = (element) => {
-  chosenNumbers.push(Number(element.textContent));
-};
-
-resetButton.addEventListener("click", () => {
-  chosenNumbers = [];
-  numberElements.forEach((element) => {
-    element.classList.remove("clicked");
-    element.classList.add("unclicked");
-  });
-  outputField.textContent = "Result will generate here";
-  calculateButton.disabled = false;
-});
-
-function calculate() {
-  const total = chosenNumbers.reduce(
-    (accumulator, current) => (accumulator += current),
-    0
-  );
-  const result = total / chosenNumbers.length;
-  outputField.textContent = result;
-  calculateButton.disabled = true;
+function calculate(selectedInputs) {
+  const sum = selectedInputs.reduce((accumulator, currentElement) => {
+    return (accumulator += Number(currentElement.value));
+  }, 0);
+  return sum / selectedInputs.length;
 }
-
-calculateButton.addEventListener("click", calculate);
